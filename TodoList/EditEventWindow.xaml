@@ -1,0 +1,20 @@
+﻿<Window x:Class="TodoList.EditEventWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TodoList"
+        mc:Ignorable="d"
+        Title="EditEventWindow" Height="400" Width="600">
+    <Grid>
+        <Label x:Name="lb_editEvent_info" Content="Edycja istniejącego wydarzenia" HorizontalAlignment="Left" Margin="21,10,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lb_editEvent_date" Content="Wybierz nową datę wydarzenia:" HorizontalAlignment="Left" Margin="21,42,0,0" VerticalAlignment="Top"/>
+        <DatePicker x:Name="dp_editEvent_selected_date" HorizontalAlignment="Left" Margin="215,44,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="tb_editEvent_title" HorizontalAlignment="Left" Margin="27,99,0,0" TextWrapping="Wrap" Text="Tytuł" VerticalAlignment="Top" Width="497"/>
+        <TextBox x:Name="tb_editEvent_description" HorizontalAlignment="Left" Margin="27,141,0,0" TextWrapping="Wrap" Text="Opis" VerticalAlignment="Top" Width="497" Height="99"/>
+        <Button x:Name="bt_editEvent_edit" Content="Zapisz zmiany" HorizontalAlignment="Left" Margin="348,274,0,0" VerticalAlignment="Top" Click="bt_editEvent_edit_Click"/>
+        <Button x:Name="bt_editEvent_delete" Content="Usuń wydarzenie" HorizontalAlignment="Left" Margin="468,274,0,0" VerticalAlignment="Top" Click="bt_editEvent_delete_Click"/>
+        <Button x:Name="bt_editEvent_done" Content="Wykonano" HorizontalAlignment="Left" Margin="27,274,0,0" VerticalAlignment="Top" Click="bt_editEvent_done_Click"/>
+
+    </Grid>
+</Window>

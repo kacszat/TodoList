@@ -5,8 +5,32 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TodoList"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="600" Width="1000">
     <Grid>
+        <Label x:Name="lb_text_today1" Content="Dziś jest:" HorizontalAlignment="Left" Margin="43,22,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lb_current_date" Content="XX" HorizontalAlignment="Left" Margin="113,22,0,0" VerticalAlignment="Top" />
+        <Button x:Name="bt_current_events" Content="Pokaż" HorizontalAlignment="Left" Margin="216,108,0,0" VerticalAlignment="Top" Click="Button_Click_Current_Events" Height="35" Width="52"/>
+        <DatePicker x:Name="dp_selected_date" HorizontalAlignment="Left" Margin="190,66,0,0" VerticalAlignment="Top" SelectedDateChanged="dp_selected_date_SelectedDateChanged"/>
+        <Label x:Name="lb_text_calender" Content="Pokaż wydarzenia dla:" HorizontalAlignment="Left" Margin="58,64,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lb_info" Content="Najbliższe wydarzenia" HorizontalAlignment="Left" Margin="43,195,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lb_text_current_events" Content="Najbliższe wydarzenia:" HorizontalAlignment="Left" Margin="58,113,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="bt_create_event" Content="Dodaj wydarzenie" HorizontalAlignment="Left" Margin="635,187,0,0" VerticalAlignment="Top" Height="34" Width="123" Click="bt_create_events_Click"/>
+        <ListView x:Name="lv_events" Margin="43,248,56,80" SelectionChanged="lv_events_SelectionChanged" d:ItemsSource="{d:SampleData ItemCount=5}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Tytuł wydarzenia" DisplayMemberBinding="{Binding Title}" Width="300"/>
+                    <GridViewColumn Header="Opis wydarzenia" DisplayMemberBinding="{Binding Description}" Width="300"/>
+                    <GridViewColumn Header="Data wydarzenia" Width="120">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Date, StringFormat='dd.MM.yyyy'}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Wykonanie" DisplayMemberBinding="{Binding IsCompleted}" Width="120"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
 
     </Grid>
 </Window>
