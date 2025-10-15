@@ -24,6 +24,7 @@ namespace TodoList {
 
         public MainWindow() {
             InitializeComponent();
+            show_Notification();
             lv_events.AddHandler(GridViewColumnHeader.ClickEvent, new RoutedEventHandler(lv_events_Click)); // Dodanie obsługi kliknięcia nagłówka kolumny
             set_Current_Date();
             load_Events();
@@ -136,7 +137,7 @@ namespace TodoList {
                     direction = lastSortDirection == ListSortDirection.Ascending ? ListSortDirection.Descending : ListSortDirection.Ascending;  // Odwrócenie kierunku sortowania
                 }
 
-                Sort(sortBy, direction);
+                just_Sort(sortBy, direction);
 
                 lastHeaderClicked = headerClicked;
                 lastSortDirection = direction;
@@ -144,11 +145,31 @@ namespace TodoList {
         }
 
         // Funkcja odpowiedzialna bezpośrednio za sortowanie w ListView
-        private void Sort(string sortBy, ListSortDirection direction) {
+        private void just_Sort(string sortBy, ListSortDirection direction) {
             ICollectionView dataView = CollectionViewSource.GetDefaultView(lv_events.ItemsSource);  // Pobranie widoku kolekcji
             dataView.SortDescriptions.Clear();
             dataView.SortDescriptions.Add(new SortDescription(sortBy, direction));
             dataView.Refresh();
+        }
+
+        // Pokazanie powiadomienia o wydarzeniach zapisanych na dziś
+        private void show_Notification() {
+            StringBuilder notificationMessage = new StringBuilder();
+            notificationMessage.AppendLine("UWAGA!");
+            notificationMessage.AppendLine("Masz dziś zapisane wydarzenia!");
+            int count = count_Todays_Events();
+            if (count > 0) {
+                notificationMessage.AppendLine($"Liczba wydarzeń: {count}");
+                MessageBox.Show(notificationMessage.ToString(), "Powiadomienie", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+        }
+
+        // Funkcja zliczająca wydarzenia zapisane na dziś
+        private int count_Todays_Events() {
+            using (var db = new EventDataBaseContext()) {
+                DateTime today = DateTime.Today;
+                return db.Events.Count(ev => ev.Date.Date == today);
+            }
         }
 
     }
