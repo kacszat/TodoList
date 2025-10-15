@@ -7,30 +7,58 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="600" Width="1000">
     <Grid>
-        <Label x:Name="lb_text_today1" Content="Dziś jest:" HorizontalAlignment="Left" Margin="43,22,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="lb_current_date" Content="XX" HorizontalAlignment="Left" Margin="113,22,0,0" VerticalAlignment="Top" />
-        <Button x:Name="bt_current_events" Content="Pokaż" HorizontalAlignment="Left" Margin="216,108,0,0" VerticalAlignment="Top" Click="bt_current_events_Show" Height="35" Width="52"/>
-        <DatePicker x:Name="dp_selected_date" HorizontalAlignment="Left" Margin="190,66,0,0" VerticalAlignment="Top" SelectedDateChanged="dp_selected_date_SelectedDateChanged"/>
-        <Label x:Name="lb_text_calender" Content="Pokaż wydarzenia dla:" HorizontalAlignment="Left" Margin="58,64,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="lb_info" Content="Najbliższe wydarzenia" HorizontalAlignment="Left" Margin="43,195,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="lb_text_current_events" Content="Najbliższe wydarzenia:" HorizontalAlignment="Left" Margin="58,113,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="bt_create_event" Content="Dodaj wydarzenie" HorizontalAlignment="Left" Margin="635,187,0,0" VerticalAlignment="Top" Height="34" Width="123" Click="bt_create_events_Click"/>
-        <ListView x:Name="lv_events" Margin="43,248,56,80" SelectionChanged="lv_events_SelectionChanged" d:ItemsSource="{d:SampleData ItemCount=5}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="397*"/>
+            <RowDefinition Height="187*"/>
+        </Grid.RowDefinitions>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="1,1" StartPoint="0,0">
+                <GradientStop Color="#FFD0C655" Offset="1"/>
+                <GradientStop Color="#FF85D076" Offset="0"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Label x:Name="lb_text_today1" Content="Dziś jest:" HorizontalAlignment="Left" Margin="35,20,0,0" VerticalAlignment="Top" Foreground="White" FontSize="20"/>
+        <Label x:Name="lb_current_date" Content="XX.XX.XXXX" HorizontalAlignment="Left" Margin="122,20,0,0" VerticalAlignment="Top" Foreground="White" FontSize="20" />
+        <Button x:Name="bt_current_events" Content="Pokaż" HorizontalAlignment="Left" Margin="247,151,0,0" VerticalAlignment="Top" Click="bt_current_events_Show" Height="30" Width="140" Foreground="Black" BorderBrush="Black" Background="White" FontSize="16"/>
+        <DatePicker x:Name="dp_selected_date" HorizontalAlignment="Left" Margin="247,105,0,0" VerticalAlignment="Top" SelectedDateChanged="dp_selected_date_SelectedDateChanged" BorderBrush="Black" Foreground="Black" Background="White" Height="30" Width="140" FontSize="16"/>
+        <Label x:Name="lb_text_calender" Content="Pokaż wydarzenia dla:" HorizontalAlignment="Left" Margin="35,102,0,0" VerticalAlignment="Top" Foreground="White" FontSize="20"/>
+        <Label x:Name="lb_info" Content="Najbliższe wydarzenia" HorizontalAlignment="Left" Margin="35,220,0,0" VerticalAlignment="Top" Foreground="White" FontSize="20"/>
+        <Label x:Name="lb_text_current_events" Content="Najbliższe wydarzenia:" HorizontalAlignment="Left" Margin="35,144,0,0" VerticalAlignment="Top" Foreground="White" FontSize="20"/>
+        <Button x:Name="bt_create_event" Content="Dodaj wydarzenie" HorizontalAlignment="Left" Margin="760,227,0,0" VerticalAlignment="Top" Height="30" Width="170" Click="bt_create_events_Click" Background="White" BorderBrush="Black" Foreground="Black" FontSize="16"/>
+        <ListView x:Name="lv_events" Margin="35,270,0,58" SelectionChanged="lv_events_SelectionChanged" d:ItemsSource="{d:SampleData ItemCount=5}" Background="White" BorderBrush="Black" Foreground="Black" FontSize="16" Grid.RowSpan="2" HorizontalAlignment="Left" Width="895">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="Background" Value="LightPink"/>
+                    <Setter Property="Foreground" Value="Black"/>
+                    <Setter Property="FontSize" Value="16"/>
+                    <Setter Property="BorderBrush" Value="Black"/>
+                    <Setter Property="BorderThickness" Value="0"/>
+                    <Setter Property="Margin" Value="2"/>
+
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsCompleted}" Value="True">
+                            <Setter Property="Background" Value="LightGreen"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </ListView.ItemContainerStyle>
+
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Tytuł wydarzenia" DisplayMemberBinding="{Binding Title}" Width="300"/>
-                    <GridViewColumn Header="Opis wydarzenia" DisplayMemberBinding="{Binding Description}" Width="300"/>
-                    <GridViewColumn Header="Data wydarzenia" Width="120">
+                    <GridViewColumn Header="Tytuł wydarzenia" DisplayMemberBinding="{Binding Title}" Width="350" />
+                    <GridViewColumn Header="Opis wydarzenia" DisplayMemberBinding="{Binding Description}" Width="350"/>
+                    <GridViewColumn Header="Data wydarzenia" Width="150">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Date, StringFormat='dd.MM.yyyy'}"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Header="Wykonanie" DisplayMemberBinding="{Binding IsCompleted}" Width="120"/>
+                    <!--<GridViewColumn Header="Wykonanie" DisplayMemberBinding="{Binding IsCompleted}" Width="120"/>-->
                 </GridView>
             </ListView.View>
         </ListView>
+        <Label Content="To Do List App" HorizontalAlignment="Left" Margin="673,20,0,0" VerticalAlignment="Top" FontSize="36" FontWeight="Bold" Foreground="White"/>
 
     </Grid>
 </Window>
