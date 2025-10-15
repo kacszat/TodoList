@@ -9,7 +9,7 @@
     <Grid>
         <Label x:Name="lb_text_today1" Content="Dziś jest:" HorizontalAlignment="Left" Margin="43,22,0,0" VerticalAlignment="Top"/>
         <Label x:Name="lb_current_date" Content="XX" HorizontalAlignment="Left" Margin="113,22,0,0" VerticalAlignment="Top" />
-        <Button x:Name="bt_current_events" Content="Pokaż" HorizontalAlignment="Left" Margin="216,108,0,0" VerticalAlignment="Top" Click="Button_Click_Current_Events" Height="35" Width="52"/>
+        <Button x:Name="bt_current_events" Content="Pokaż" HorizontalAlignment="Left" Margin="216,108,0,0" VerticalAlignment="Top" Click="bt_current_events_Show" Height="35" Width="52"/>
         <DatePicker x:Name="dp_selected_date" HorizontalAlignment="Left" Margin="190,66,0,0" VerticalAlignment="Top" SelectedDateChanged="dp_selected_date_SelectedDateChanged"/>
         <Label x:Name="lb_text_calender" Content="Pokaż wydarzenia dla:" HorizontalAlignment="Left" Margin="58,64,0,0" VerticalAlignment="Top"/>
         <Label x:Name="lb_info" Content="Najbliższe wydarzenia" HorizontalAlignment="Left" Margin="43,195,0,0" VerticalAlignment="Top"/>
