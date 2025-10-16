@@ -5,16 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TodoList"
         mc:Ignorable="d"
-        Title="EditEventWindow" Height="400" Width="600">
+        Title="EditEventWindow" Height="520" Width="800">
     <Grid>
-        <Label x:Name="lb_editEvent_info" Content="Edycja istniejącego wydarzenia" HorizontalAlignment="Left" Margin="21,10,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="lb_editEvent_date" Content="Wybierz nową datę wydarzenia:" HorizontalAlignment="Left" Margin="21,42,0,0" VerticalAlignment="Top"/>
-        <DatePicker x:Name="dp_editEvent_selected_date" HorizontalAlignment="Left" Margin="215,44,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="tb_editEvent_title" HorizontalAlignment="Left" Margin="27,99,0,0" TextWrapping="Wrap" Text="Tytuł" VerticalAlignment="Top" Width="497"/>
-        <TextBox x:Name="tb_editEvent_description" HorizontalAlignment="Left" Margin="27,141,0,0" TextWrapping="Wrap" Text="Opis" VerticalAlignment="Top" Width="497" Height="99"/>
-        <Button x:Name="bt_editEvent_edit" Content="Zapisz zmiany" HorizontalAlignment="Left" Margin="348,274,0,0" VerticalAlignment="Top" Click="bt_editEvent_edit_Click"/>
-        <Button x:Name="bt_editEvent_delete" Content="Usuń wydarzenie" HorizontalAlignment="Left" Margin="468,274,0,0" VerticalAlignment="Top" Click="bt_editEvent_delete_Click"/>
-        <Button x:Name="bt_editEvent_done" Content="Wykonano" HorizontalAlignment="Left" Margin="27,274,0,0" VerticalAlignment="Top" Click="bt_editEvent_done_Click"/>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="1,1" StartPoint="0,0">
+                <GradientStop Color="#FFD0C655" Offset="1"/>
+                <GradientStop Color="#FF85D076" Offset="0"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Label x:Name="lb_editEvent_info" Content="Edycja istniejącego wydarzenia" HorizontalAlignment="Left" Margin="35,20,0,0" VerticalAlignment="Top" Foreground="White" FontSize="20" Height="40"/>
+        <Label x:Name="lb_editEvent_date" Content="Wybierz nową datę wydarzenia:" HorizontalAlignment="Left" Margin="35,70,0,0" VerticalAlignment="Top" Foreground="White" FontSize="20" Height="40" />
+        <DatePicker x:Name="dp_editEvent_selected_date" HorizontalAlignment="Left" Margin="328,75,0,0" VerticalAlignment="Top" BorderBrush="Black" Foreground="Black" Background="White" FontSize="16" Height="30" Width="130"/>
+        <TextBox x:Name="tb_editEvent_title" HorizontalAlignment="Left" Margin="35,155,0,0" TextWrapping="Wrap" Text="Tytuł" VerticalAlignment="Top"  Width="650" Height="30" FontSize="18" Background="White" BorderBrush="Black"/>
+        <TextBox x:Name="tb_editEvent_description" HorizontalAlignment="Left" Margin="35,200,0,0" TextWrapping="Wrap" Text="Opis" VerticalAlignment="Top" Width="650" Height="200" BorderBrush="Black" FontSize="18"/>
+        <Button x:Name="bt_editEvent_edit" Content="Zapisz zmiany" HorizontalAlignment="Left" Margin="350,420,0,0" VerticalAlignment="Top" Click="bt_editEvent_edit_Click" Height="30" Width="160" FontSize="16" BorderBrush="Black" Background="White"/>
+        <Button x:Name="bt_editEvent_delete" Content="Usuń wydarzenie" HorizontalAlignment="Left" Margin="525,420,0,0" VerticalAlignment="Top" Click="bt_editEvent_delete_Click" Height="30" Width="160" FontSize="16" BorderBrush="Black" Background="White"/>
+        <Button x:Name="bt_editEvent_done" Content="Wykonano" HorizontalAlignment="Left" Margin="35,420,0,0" VerticalAlignment="Top" Click="bt_editEvent_done_Click" Height="30" Width="160" FontSize="16" BorderBrush="Black" Background="White"/>
 
     </Grid>
 </Window>
