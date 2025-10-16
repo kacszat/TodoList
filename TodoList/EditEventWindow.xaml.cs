@@ -20,7 +20,7 @@ namespace TodoList {
     public partial class EditEventWindow : Window {
         private int selected_ID;
 
-        public EditEventWindow(int selected_ID) { // Konstruktor przyjmujący ID wybranego wydarzenia
+        public EditEventWindow(int selected_ID) {
             InitializeComponent();
             this.selected_ID = selected_ID;
             load_Event_Data();
@@ -41,7 +41,8 @@ namespace TodoList {
                 tb_editEvent_description.Text = ev.Description;
                 dp_editEvent_selected_date.SelectedDate = ev.Date;
             } else {
-                MessageBox.Show("Nie znaleziono wydarzenia.", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
+                CustomMessageBox CMBox = new CustomMessageBox("Error", "Nie znaleziono wydarzenia.");
+                CMBox.ShowDialog();
                 this.Close();
             }
         }
@@ -51,26 +52,37 @@ namespace TodoList {
 
             var ev = get_Selected_Event();
             if (ev != null) {
-                ev.Title = tb_editEvent_title.Text;
-                ev.Description = tb_editEvent_description.Text;
-                ev.Date = dp_editEvent_selected_date.SelectedDate ?? ev.Date;
 
-                using (var db = new EventDataBaseContext()) {
-                    db.Events.Update(ev);
-                    db.SaveChanges();
+                if (string.IsNullOrWhiteSpace(tb_editEvent_title.Text)) {
+                    CustomMessageBox CMBox = new CustomMessageBox("Error", "Tytuł wydarzenia nie może być pusty.");
+                    CMBox.ShowDialog();
+                    return;
+                } else {
+
+                    ev.Title = tb_editEvent_title.Text;
+                    ev.Description = tb_editEvent_description.Text;
+                    ev.Date = dp_editEvent_selected_date.SelectedDate ?? ev.Date;
+
+                    using (var db = new EventDataBaseContext()) {
+                        db.Events.Update(ev);
+                        db.SaveChanges();
+                    }
+                    this.Close();
+
                 }
-                //MessageBox.Show("Wydarzenie zaktualizowane.", "Sukces", MessageBoxButton.OK, MessageBoxImage.Information);
-                this.Close();
             } else {
-                MessageBox.Show("Nie znaleziono wydarzenia.", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
+                CustomMessageBox CMBox = new CustomMessageBox("Error", "Nie znaleziono wydarzenia.");
+                CMBox.ShowDialog();
             }
         }
 
         // Funkcja usuwająca wydarzenie
         private void bt_editEvent_delete_Click(object sender, RoutedEventArgs e) {
 
-            var result = MessageBox.Show("Czy na pewno chcesz usunąć to wydarzenie?", "Potwierdzenie", MessageBoxButton.YesNo, MessageBoxImage.Warning);
-            if (result == MessageBoxResult.Yes) {
+            CustomMessageBox CustomMessageBox = new CustomMessageBox("Warning", "Czy na pewno chcesz usunąć to wydarzenie?");
+            bool? response = CustomMessageBox.ShowDialog();
+
+            if (CustomMessageBox.UserResponse == true) {
                 var ev = get_Selected_Event();
                 if (ev != null) {
 
@@ -78,10 +90,11 @@ namespace TodoList {
                         db.Events.Remove(ev);
                         db.SaveChanges();
                     }
-                    //MessageBox.Show("Wydarzenie usunięte.", "Sukces", MessageBoxButton.OK, MessageBoxImage.Information);
+                   
                     this.Close();
                 } else {
-                    MessageBox.Show("Nie znaleziono wydarzenia.", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
+                    CustomMessageBox CMBox = new CustomMessageBox("Error", "Nie znaleziono wydarzenia.");
+                    CMBox.ShowDialog();
                 }
             }
         }
@@ -98,10 +111,10 @@ namespace TodoList {
                     db.Events.Update(ev);
                     db.SaveChanges();
                 }
-                //MessageBox.Show("Wydarzenie wykonane!", "Sukces", MessageBoxButton.OK, MessageBoxImage.Information);
                 this.Close();
             } else {
-                MessageBox.Show("Nie znaleziono wydarzenia.", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
+                CustomMessageBox CMBox = new CustomMessageBox("Error", "Nie znaleziono wydarzenia.");
+                CMBox.ShowDialog();
             }
         }
 

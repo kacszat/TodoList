@@ -5,12 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TodoList"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="1000">
+        Title="To Do List App" Height="600" Width="1000">
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="397*"/>
-            <RowDefinition Height="187*"/>
-        </Grid.RowDefinitions>
         <Grid.Background>
             <LinearGradientBrush EndPoint="1,1" StartPoint="0,0">
                 <GradientStop Color="#FFD0C655" Offset="1"/>

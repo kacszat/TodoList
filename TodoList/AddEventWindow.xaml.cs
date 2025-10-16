@@ -27,27 +27,29 @@ namespace TodoList {
 
         private void bt_addEvent_add_Click(object sender, RoutedEventArgs e) {
 
-            // Powiązanie danych z formularza do zmiennych
-            newEvent.Title = tb_addEvent_title.Text;
-            newEvent.Description = tb_addEvent_description.Text;
-            newEvent.Date = (DateTime)dp_addEvent_selected_date.SelectedDate;
-            newEvent.IsCompleted = false;
-
             // Walidacja danych
-            if (string.IsNullOrWhiteSpace(newEvent.Title)) {
-                MessageBox.Show("Tytuł wydarzenia nie może być pusty.", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
+            if (string.IsNullOrWhiteSpace(tb_addEvent_title.Text)) {
+                CustomMessageBox CMBox = new CustomMessageBox("Error", "Tytuł wydarzenia nie może być pusty.");
+                CMBox.ShowDialog();
                 return;
-            } else if (newEvent.Date == null) {
-                MessageBox.Show("Proszę wybrać datę wydarzenia.", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
+            } else if (dp_addEvent_selected_date.SelectedDate == null) {
+                CustomMessageBox CMBox = new CustomMessageBox("Error", "Proszę wybrać datę wydarzenia.");
+                CMBox.ShowDialog();
                 return;
             } else {
+
+                // Powiązanie danych z formularza do zmiennych
+                newEvent.Title = tb_addEvent_title.Text;
+                newEvent.Description = tb_addEvent_description.Text;
+                newEvent.Date = (DateTime)dp_addEvent_selected_date.SelectedDate;
+                newEvent.IsCompleted = false;
+
                 using (EventDataBaseContext db = new EventDataBaseContext()) {
-                    db.Database.EnsureCreated(); // Upewnienie się, że baza danych jest utworzona, jeśli nie, utwórz ją
+                    db.Database.EnsureCreated(); // Upewnienie się, że baza danych jest utworzona, jeśli nie, jest tworzona
                     db.Events.Add(newEvent);
                     db.SaveChanges();
                 }
 
-                //MessageBox.Show("Wydarzenie zapisane!");
                 NewEventDate = newEvent.Date;
                 this.Close();
             }

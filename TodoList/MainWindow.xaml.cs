@@ -17,7 +17,7 @@ namespace TodoList {
     public partial class MainWindow : Window {
 
         private DateTime? selectedDate; // Przechowywanie wybranej daty z kalendarza
-        bool IsCurrentEventsShown = false;  // Flaga do sprawdzania czy są pokazywane najbliższe wydarzenia
+        bool IsCurrentEventsShown = false;
 
         private GridViewColumnHeader? lastHeaderClicked = null; // Przechowywanie ostatnio klikniętego nagłówka kolumny z ListView
         private ListSortDirection lastSortDirection = ListSortDirection.Ascending; // Przechowywanie ostatniego kierunku sortowania
@@ -39,7 +39,7 @@ namespace TodoList {
 
         // Ustawienie informacji o wybranej dacie
         private void set_Date_Info() {
-            if (selectedDate.HasValue && !IsCurrentEventsShown) { //Jeśli wybrano datę (not null)
+            if (selectedDate.HasValue && !IsCurrentEventsShown) {
                 lb_info.Content = $"Wydarzenia dla: {selectedDate.Value.ToString("dd.MM.yyyy")}";
             }
         }
@@ -48,7 +48,7 @@ namespace TodoList {
         private void dp_selected_date_SelectedDateChanged(object sender, SelectionChangedEventArgs e) {
 
             selectedDate = dp_selected_date.SelectedDate;
-            if (selectedDate.HasValue) { //Jeśli wybrano datę (not null)
+            if (selectedDate.HasValue) {
                 IsCurrentEventsShown = false;
                 set_Date_Info();
                 load_Events();
@@ -160,7 +160,8 @@ namespace TodoList {
             int count = count_Todays_Events();
             if (count > 0) {
                 notificationMessage.AppendLine($"Liczba wydarzeń: {count}");
-                MessageBox.Show(notificationMessage.ToString(), "Powiadomienie", MessageBoxButton.OK, MessageBoxImage.Information);
+                CustomMessageBox CMBox = new CustomMessageBox("Info", notificationMessage.ToString());
+                CMBox.ShowDialog();
             }
         }
 

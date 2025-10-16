@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TodoList"
         mc:Ignorable="d"
-        Title="AddEventWindow" Height="520" Width="800">
+        Title="To Do List App" Height="520" Width="800">
     <Grid>
         <Grid.Background>
             <LinearGradientBrush EndPoint="1,1" StartPoint="0,0">
