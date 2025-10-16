@@ -16,9 +16,11 @@
         <Label x:Name="lb_addEvent_info" Content="Tworzenie nowego wydarzenia" HorizontalAlignment="Left" Margin="35,20,0,0" VerticalAlignment="Top" Foreground="White" FontSize="20" Height="40" Width="300"/>
         <Label x:Name="lb_addEvent_date" Content="Wybierz datę wydarzenia:" HorizontalAlignment="Left" Margin="35,67,0,0" VerticalAlignment="Top" Foreground="White" FontSize="20" Height="40" Width="236"/>
         <DatePicker x:Name="dp_addEvent_selected_date" HorizontalAlignment="Left" Margin="276,72,0,0" VerticalAlignment="Top" BorderBrush="Black" Foreground="Black" Background="White" Height="30" Width="130" FontSize="16"/>
-        <TextBox x:Name="tb_addEvent_title" HorizontalAlignment="Left" Margin="35,155,0,0" TextWrapping="Wrap" Text="Tytuł" VerticalAlignment="Top" Width="650" Height="30" FontSize="18" Background="White" BorderBrush="Black"/>
-        <TextBox x:Name="tb_addEvent_description" HorizontalAlignment="Left" Margin="35,200,0,0" TextWrapping="Wrap" Text="Opis" VerticalAlignment="Top" Width="650" Height="200" BorderBrush="Black" FontSize="18"/>
-        <Button x:Name="bt_addEvent_add" Content="Dodaj wydarzenie" HorizontalAlignment="Left" Margin="35,420,0,0" VerticalAlignment="Top" Click="bt_addEvent_add_Click" Height="30" Width="160" FontSize="16" BorderBrush="Black" Background="White"/>
+        <TextBox x:Name="tb_addEvent_title" HorizontalAlignment="Left" Margin="35,155,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="650" Height="30" FontSize="18" Background="White" BorderBrush="Black"/>
+        <TextBox x:Name="tb_addEvent_description" HorizontalAlignment="Left" Margin="35,220,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="650" Height="180" BorderBrush="Black" FontSize="18"/>
+        <Button x:Name="bt_addEvent_add" Content="Zapisz wydarzenie" HorizontalAlignment="Left" Margin="35,420,0,0" VerticalAlignment="Top" Click="bt_addEvent_add_Click" Height="30" Width="160" FontSize="16" BorderBrush="Black" Background="White"/>
+        <Label Content="Tytuł:" HorizontalAlignment="Left" Margin="35,126,0,0" VerticalAlignment="Top" Foreground="White" FontSize="14"/>
+        <Label Content="Opis:" HorizontalAlignment="Left" Margin="36,191,0,0" VerticalAlignment="Top" Foreground="White" FontSize="14"/>
 
     </Grid>
 </Window>
