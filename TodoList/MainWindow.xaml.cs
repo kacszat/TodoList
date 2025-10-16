@@ -23,11 +23,17 @@ namespace TodoList {
         private ListSortDirection lastSortDirection = ListSortDirection.Ascending; // Przechowywanie ostatniego kierunku sortowania
 
         public MainWindow() {
-            InitializeComponent();
-            show_Notification();
-            lv_events.AddHandler(GridViewColumnHeader.ClickEvent, new RoutedEventHandler(lv_events_Click)); // Dodanie obsługi kliknięcia nagłówka kolumny
-            set_Current_Date();
-            load_Events();
+
+            try {
+                InitializeComponent();
+                lv_events.AddHandler(GridViewColumnHeader.ClickEvent, new RoutedEventHandler(lv_events_Click)); // Dodanie obsługi kliknięcia nagłówka kolumny
+                set_Current_Date();
+                load_Events();
+                show_Notification();
+            }
+            catch (Exception ex) {
+                MessageBox.Show("Błąd startowy: " + ex.Message, "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         // Dzisiejsza data
